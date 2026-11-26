@@ -1,0 +1,285 @@
+
+@import "tailwindcss";
+
+:root {
+  --paper: #f8f6f0;
+  --paper-deep: #eeece3;
+  --white: #ffffff;
+  --ink: #29382e;
+  --green: #304936;
+  --green-dark: #203629;
+  --green-soft: #e5ebe3;
+  --gold: #b59660;
+  --gold-light: #e5d6b5;
+  --muted: #788277;
+  --line: #e6e3d9;
+  --shadow: 0 20px 60px rgba(38, 53, 41, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--gold-light);
+  color: var(--green-dark);
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.section-heading {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.soft-card {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow);
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  background: var(--green);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.primary-button:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 46px;
+  padding: 0.8rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: white;
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 180ms ease;
+}
+
+.secondary-button:hover {
+  border-color: var(--gold);
+  background: var(--paper);
+}
+
+.form-field {
+  width: 100%;
+  border: 1px solid #dfdfd5;
+  border-radius: 13px;
+  background: #fbfaf7;
+  padding: 0.95rem 1rem;
+  color: var(--ink);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.form-field:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(181, 150, 96, 0.12);
+}
+
+.form-field::placeholder {
+  color: #a0a69d;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1.5s ease;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 39, 29, 0.76),
+    rgba(24, 39, 29, 0.38),
+    rgba(24, 39, 29, 0.2)
+  );
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+
+.gallery-card:hover .gallery-image {
+  transform: scale(1.045);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(12, 17, 13, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.lightbox-image {
+  max-width: 94vw;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.fade-up {
+  animation: fadeUp 700ms ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Gentle cross-fade each time the wedding background changes. */
+.slide-fade {
+  animation: heroSlideFade 1.5s ease both;
+}
+
+@keyframes heroSlideFade {
+  from {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Mobile-first refinements */
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+
+  .soft-card {
+    border-radius: 22px;
+  }
+
+  .lightbox {
+    padding: 12px;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 72svh;
+  }
+
+  .hero-image {
+    object-position: center;
+  }
+
+  #upload,
+  #gallery,
+  #message {
+    scroll-margin-top: 76px;
+  }
+}
+
+@media (max-width: 380px) {
+  .section-heading {
+    font-size: 2.35rem;
+  }
+}
